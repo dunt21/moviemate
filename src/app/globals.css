@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
-:root {
-  --nav-background: hsl(0 0% 100%);
-  --purple: rgb(147 51 234);
-  --gray: rgb(85 85 85 / 0.7);
+@theme {
+  --color-white: hsl(0 0% 100%);
+  --color-purple: rgb(147 51 234);
+  --color-red: rgb(255 79 79);
+  --color-gray: rgb(85 85 85 / 0.8);
+  --color-bgGray: rgb(85 85 85 / 0.05);
+  --color-seaBlue: #00e6e6;
 }
 
 nav {
-  background-color: var(--nav-background);
+  background-color: white;
   height: 3.5rem;
   display: flex;
   justify-content: space-between;
@@ -16,7 +19,7 @@ nav {
 }
 
 .nav-p {
-  color: var(--gray);
+  color: gray;
   font-weight: 500;
 }
 
@@ -42,4 +45,21 @@ nav > :first-child {
   font-weight: 500;
   font-size: 1.2rem;
   border-radius: 2rem;
+}
+
+.btn-square {
+  display: flex;
+  align-items: center;
+  padding: 0rem 1.5rem;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: white;
+  align-items: center;
+  border-radius: 1rem;
+  /* height: fit-content; */
+  /* 
+
+
+  */
 }
