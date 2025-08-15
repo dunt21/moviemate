@@ -7,15 +7,15 @@ export default function Home() {
   return (
     <Layout variant="home">
       {/* Hero Section */}
-      <section className="bg-[url('/images/cinematic.png')] bg-center bg-cover w-full h-[20rem] relative">
+      <section className="bg-[url('/images/cinematic.png')] bg-center bg-cover w-full h-[400px] relative">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-        <div className="absolute bottom-10 left-20 text-white space-y-4">
+        <div className="absolute bottom-14 left-38 text-white space-y-5">
           <p className="text-5xl font-bold">Discover Amazing Movies</p>
-          <p className="font-semibold text-lg">
+          <p className=" text-lg">
             Browse our collection of the latest and greatest films from around
             the world.
           </p>
-          <button className="btn-rd bg-[rgb(147,51,234)] ">
+          <button className="btn-rd bg-purple ">
             <Image
               src="/icons/playbtn.svg"
               alt="play button"
@@ -29,21 +29,18 @@ export default function Home() {
       </section>
 
       {/* Page title and Constrols Section */}
-      <section className="w-[85%] mx-auto pt-16">
+      <section className="w-[82%] mx-auto pt-16">
         <div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             <p className="font-bold text-4xl">Movie Collection</p>
-            <p className="text-[var(--gray)]">
-              {" "}
-              Browse and manage your favorite movies
-            </p>
+            <p className="text-gray"> Browse and manage your favorite movies</p>
           </div>
 
           <div className="mt-8 flex gap-5 ">
             <div className="relative  ">
               <select
                 name="movies"
-                className="bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl  focus:outline-none focus:ring-1  focus:ring-purple/50 transition duration-500 "
+                className="bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl font-inherit font-medium text-gray  focus:outline-none focus:ring-1  focus:ring-purple/50 transition duration-500 "
               >
                 <option value="All Genres">All Genres</option>
                 <option value="Comedy">Comedy</option>
@@ -53,7 +50,7 @@ export default function Home() {
                 <option value="Action">Action</option>
                 <option value="Horror">Horror</option>
               </select>
-              <div className="absolute top-1/2 transform -translate-y-[70%] left-[8rem] w-fit">
+              <div className="absolute top-1/2 transform -translate-y-[50%] left-[8rem] w-fit">
                 <Image
                   src="/icons/dropdown.svg"
                   alt="dropdown"
@@ -83,7 +80,59 @@ export default function Home() {
 
         {/* Movie List */}
         <MovieCard />
+
+        {/* navigate pages */}
+        <div className="navigate-btn flex justify-center mt-12 gap-2">
+          <button className="unactive-btn">
+            <Image
+              src="/icons/arror-left.svg"
+              width={10}
+              height={10}
+              alt="arror-left"
+            />
+          </button>
+          <button className="active-btn">1</button>
+          <button className="unactive-btn">
+            <Image
+              src="/icons/arrow-right.svg"
+              width={10}
+              height={10}
+              alt="arrow-right"
+            />
+          </button>
+        </div>
       </section>
+
+      <footer className="mt-16 flex justify-between items-center px-36 bg-white py-3 border-t border-gray-200 font-medium text-gray">
+        <div>
+          <p>
+            © 2025 <span className="logo !text-[16px]">MovieMate</span>. All
+            rights reserved
+          </p>
+        </div>
+        <nav className="space-x-7 ">
+          <a>Home</a>
+          <a>Privacy</a>
+          <a>Terms</a>
+          <a>Contact</a>
+        </nav>
+        <div className="space-x-3 footer-icons flex">
+          <button>
+            <Image src="/icons/facebook.svg" width={12} height={12} alt="bin" />
+          </button>
+          <button>
+            <Image
+              src="/icons/instagram.svg"
+              width={16}
+              height={16}
+              alt="bin"
+            />
+          </button>
+          <button>
+            <Image src="/icons/twitter.svg" width={16} height={16} alt="bin" />
+          </button>
+        </div>
+      </footer>
     </Layout>
   );
 }

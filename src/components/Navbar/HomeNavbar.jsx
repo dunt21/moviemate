@@ -1,6 +1,6 @@
 export default function HomeNavbar() {
   return (
-    <nav>
+    <nav className="nav">
       <p className="logo">MovieMate</p>
       <div>
         <div className="nav-p">

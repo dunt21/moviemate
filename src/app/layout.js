@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-inter",
   subsets: ["latin"],
 });
 
