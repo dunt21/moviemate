@@ -83,7 +83,7 @@ export default function Home() {
 
         {/* navigate pages */}
         <div className="navigate-btn flex justify-center mt-12 gap-2">
-          <button className="unactive-btn">
+          <button className="unactive-btn hover:shadow-md">
             <Image
               src="/icons/arror-left.svg"
               width={10}
@@ -92,7 +92,7 @@ export default function Home() {
             />
           </button>
           <button className="active-btn">1</button>
-          <button className="unactive-btn">
+          <button className="unactive-btn hover:shadow-md">
             <Image
               src="/icons/arrow-right.svg"
               width={10}
@@ -116,7 +116,7 @@ export default function Home() {
           <a>Terms</a>
           <a>Contact</a>
         </nav>
-        <div className="space-x-3 footer-icons flex">
+        <div className="space-x-3  footer-icons flex ">
           <button>
             <Image src="/icons/facebook.svg" width={12} height={12} alt="bin" />
           </button>

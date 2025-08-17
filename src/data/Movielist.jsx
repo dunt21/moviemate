@@ -73,7 +73,7 @@ export function MovieCard() {
       {movies.map((movie, index) => (
         <div
           key={index}
-          className=" bg-white border-0 overflow-x-hidden rounded-2xl font-medium shadow-md hover:scale-[1.03]"
+          className=" bg-white border-0 overflow-x-hidden rounded-2xl font-medium shadow-md hover:scale-[1.03] hover:shadow-lg"
         >
           <div className="relative h-64">
             <img
@@ -105,9 +105,9 @@ export function MovieCard() {
                 {movie.genre}
               </p>
             </div>
-            <p className="text-gray text-sm mb-6">${movie.price}</p>
-            <div className="flex justify-between format-cont mb-7">
-              <button className="">
+            <p className="text-gray text-sm mb-6">${movie.price.toFixed(2)}</p>
+            <div className="flex justify-between format-cont mb-7 [&>*]:hover:shadow/20">
+              <button className="hover:text-gray">
                 <Image
                   src="/icons/edit.svg"
                   width={14}
@@ -116,7 +116,7 @@ export function MovieCard() {
                 />
                 Edit
               </button>
-              <button>
+              <button className="hover:text-red">
                 <Image src="/icons/bin.svg" width={14} height={14} alt="bin" />
                 Delete
               </button>
