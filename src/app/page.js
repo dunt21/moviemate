@@ -15,7 +15,7 @@ export default function Home() {
             Browse our collection of the latest and greatest films from around
             the world.
           </p>
-          <button className="btn-rd bg-purple ">
+          <button className="btn-rd bg-purple hover:bg-purple/90 hover:shadow-md hover:shadow-purple/30">
             <Image
               src="/icons/playbtn.svg"
               alt="play button"
@@ -61,7 +61,7 @@ export default function Home() {
               </div>
             </div>
             <SearchInput />
-            <button className="btn-square bg-gradient-to-r from-purple to-seaBlue">
+            <button className="btn-square bg-gradient-to-r from-purple to-seaBlue hover:shadow-md">
               <Image
                 src="/icons/filter.svg"
                 alt="filter"
@@ -71,7 +71,7 @@ export default function Home() {
               Filter
             </button>
 
-            <button className="btn-square bg-red">
+            <button className="btn-square bg-red hover:bg-red/90 hover:shadow-md">
               <Image src="/icons/add.svg" alt="filter" width={15} height={15} />
               Create New
             </button>

@@ -73,7 +73,7 @@ export function MovieCard() {
       {movies.map((movie, index) => (
         <div
           key={index}
-          className=" bg-white border-0 overflow-x-hidden rounded-2xl font-medium shadow-md"
+          className=" bg-white border-0 overflow-x-hidden rounded-2xl font-medium shadow-md hover:scale-[1.03]"
         >
           <div className="relative h-64">
             <img
