@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,7 +24,9 @@ export default function Layout({ children, variant }) {
         className={`${inter.variable}  antialiased bg-bgGray h-screen w-screens`}
       >
         <Navbar variant={variant} />
+
         {children}
+        <Footer />
       </body>
     </html>
   );
