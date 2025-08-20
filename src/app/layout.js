@@ -1,7 +1,7 @@
-import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
+import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,10 +21,9 @@ export default function Layout({ children, variant }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.variable}  antialiased bg-bgGray h-screen w-screens`}
+        className={`${inter.variable}  antialiased bg-bgGray h-screen w-screen`}
       >
-        <Navbar variant={variant} />
-
+        <Navbar />
         {children}
         <Footer />
       </body>

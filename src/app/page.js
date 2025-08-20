@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SearchInput } from "@/components/SearchInput";
-import Layout from "./layout";
+import Genre from "@/components/genreOptions";
 import { MovieCard } from "@/data/Movielist";
 
 export default function Home() {
   return (
-    <Layout variant="home">
+    <>
       {/* Hero Section */}
       <section className="bg-[url('/images/cinematic.png')] bg-center bg-cover w-full h-[400px] relative">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -38,18 +39,7 @@ export default function Home() {
 
           <div className="mt-8 flex gap-5 ">
             <div className="relative  ">
-              <select
-                name="movies"
-                className="bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl font-inherit font-medium text-gray  focus:outline-none focus:ring-1  focus:ring-purple/50 transition duration-500 "
-              >
-                <option value="All Genres">All Genres</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Romantic Comedy">Romantic Comedy</option>
-                <option value="Western">Western</option>
-                <option value="Drama">Drama</option>
-                <option value="Action">Action</option>
-                <option value="Horror">Horror</option>
-              </select>
+              <Genre />
               <div className="absolute top-1/2 transform -translate-y-[50%] left-[8rem] w-fit">
                 <Image
                   src="/icons/dropdown.svg"
@@ -71,10 +61,20 @@ export default function Home() {
               Filter
             </button>
 
-            <button className="btn-square bg-red hover:bg-red/90 hover:shadow-md">
-              <Image src="/icons/add.svg" alt="filter" width={15} height={15} />
-              Create New
-            </button>
+            <Link
+              href="/Create"
+              className="btn-square bg-red hover:bg-red/90 hover:shadow-md "
+            >
+              <button className="flex gap-2 hover:text-white">
+                <Image
+                  src="/icons/add.svg"
+                  alt="filter"
+                  width={15}
+                  height={15}
+                />
+                Create New
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -102,6 +102,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

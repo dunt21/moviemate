@@ -1,6 +1,10 @@
-import HomeNavbar from "./HomeNavbar";
-import DefaultNavbar from "./DefaultNavbar";
+"use client";
 
-export default function Navbar({ variant }) {
-  return variant === "home" ? <HomeNavbar /> : "";
+import { usePathname } from "next/navigation";
+import HomeNavbar from "@/components/Navbar/HomeNavbar";
+import DefaultNavbar from "@/components/Navbar/DefaultNavbar";
+
+export default function Navbar() {
+  const pathName = usePathname();
+  return pathName === "/" ? <HomeNavbar /> : <DefaultNavbar />;
 }
