@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const movies = [
   {
@@ -106,8 +107,8 @@ export function MovieCard() {
               </p>
             </div>
             <p className="text-gray text-sm mb-6">${movie.price.toFixed(2)}</p>
-            <div className="flex justify-between format-cont mb-7 [&>*]:hover:shadow/20">
-              <button className="hover:text-gray">
+            <div className="flex justify-between format-cont mb-7 [&>*]:hover:shadow/20 ">
+              <a className="hover:!text-gray" href="/Edit">
                 <Image
                   src="/icons/edit.svg"
                   width={14}
@@ -115,12 +116,12 @@ export function MovieCard() {
                   alt="edit"
                 />
                 Edit
-              </button>
-              <button className="hover:text-red">
+              </a>
+              <Link className="hover:!text-red" href="">
                 <Image src="/icons/bin.svg" width={14} height={14} alt="bin" />
                 Delete
-              </button>
-              <button>
+              </Link>
+              <Link href="">
                 <Image
                   src="/icons/detail.svg"
                   width={14}
@@ -128,7 +129,7 @@ export function MovieCard() {
                   alt="bin"
                 />
                 Details
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 const ageRatings = [
+  { label: "Select Rating", value: "" },
   { label: "3+", value: 3 },
   { label: "7+", value: 7 },
   { label: "12+", value: 12 },
@@ -12,7 +13,7 @@ export default function Rating({ className = "" }) {
     <select
       name="rating"
       id="rate"
-      className={`bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl font-inherit font-medium text-gray  focus:outline-none focus:ring-1  focus:ring-purple/50 transition duration-500 ${className} `}
+      className={`bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl font-inherit font-medium text-gray  focus:outline-none focus:ring-2  focus:ring-purple/50 transition duration-500 ${className} `}
     >
       {ageRatings.map((age, index) => (
         <option key={index} value={age.value}>

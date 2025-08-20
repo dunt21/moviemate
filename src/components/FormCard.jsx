@@ -5,8 +5,9 @@ import Link from "next/link";
 
 export function FormCard() {
   return (
-    <div className="bg-gray-100 w-[45%] h-full border-0 rounded-xl shadow-glass p-7 font-medium">
+    <div className="bg-gray-100 w-[50%] h-full border-0 rounded-xl shadow-glass p-7 font-medium">
       <form className="space-y-7" noValidate>
+        {/* movie title */}
         <div className="flex flex-col">
           <label for="title">Movie Title</label>
           <input
@@ -17,6 +18,7 @@ export function FormCard() {
           ></input>
         </div>
 
+        {/* input for date, price, genre and rating */}
         <div className="grid grid-cols-2 gap-6 input-div-p">
           <div>
             <label for="date">Release Date</label>
@@ -51,49 +53,76 @@ export function FormCard() {
           </div>
         </div>
 
-        <div className="h-64 flex gap-8">
-          <div className="border-1 rounded-lg w-[40%] flex flex-col items-center pt-5 border-gray/50">
-            <Image
-              src="/icons/image.svg"
-              alt="image icon"
-              width={150}
-              height={150}
-            />
-            <p className="text-blueBlack">Image will appear here</p>
-          </div>
+        {/* synopsis */}
+        <div>
+          <label className="" for="summary">
+            Synopsis
+          </label>
+          <textarea
+            placeholder="Description goes here..."
+            minLength="150"
+            maxLength="600"
+            id="summary"
+          ></textarea>
+        </div>
 
-          <div className="border-2 border-gray/50 border-dashed flex-1 rounded-lg flex flex-col items-center justify-center">
-            <Image
-              src="/icons/upload.svg"
-              alt="upload icon"
-              width={45}
-              height={45}
-              className="mb-5"
-            />
-            <p className="text-center text-blueBlack mb-2">
-              Drag & drop your image here
-              <br />
-              <span className="text-gray ">or</span>
-            </p>
-            <input className="hidden" id="upload-img" type="file" required />
+        {/* movie upload section */}
+        <div>
+          <p className="text-blueBlack mb-2"> Movie Poster</p>
 
-            <label
-              for="upload-img"
-              className="!mb-0 form-btn border-purple !text-purple border-1 rounded-3xl py-2 px-6 "
-            >
-              Browse Files
-            </label>
-            <p className="text-gray text-xs mt-3">
-              Supported formats: JPG, PNG
-            </p>
-            <p className="text-gray text-xs"> Max size: 5MB</p>
+          <div className="h-64 flex gap-8 ">
+            <div className="border-1 rounded-lg w-[45%] flex flex-col items-center pt-5 border-gray/50 relative">
+              <Image
+                src="/icons/image.svg"
+                alt="image icon"
+                width={150}
+                height={150}
+              />
+              <p className="text-blueBlack">Image will appear here</p>
+              <button className="bg-red py-1 px-2 rounded-2xl absolute right-2 top-2 hidden">
+                <Image
+                  src="/icons/close.svg"
+                  width={15}
+                  height={15}
+                  alt="close icon"
+                />
+              </button>
+            </div>
+
+            <div className="border-2 border-gray/50 border-dashed flex-1 rounded-lg flex flex-col items-center justify-center hover:border-purple/50">
+              <Image
+                src="/icons/upload.svg"
+                alt="upload icon"
+                width={45}
+                height={45}
+                className="mb-5"
+              />
+              <p className="text-center text-blueBlack mb-2">
+                Drag & drop your image here
+                <br />
+                <span className="text-gray ">or</span>
+              </p>
+              <input className="hidden" id="upload-img" type="file" required />
+
+              <label
+                for="upload-img"
+                className="!mb-0 form-btn border-purple !text-purple border-1 rounded-3xl py-2 px-6 hover:bg-purple hover:!text-white cursor-pointer"
+              >
+                Browse Files
+              </label>
+              <p className="text-gray text-xs mt-3">
+                Supported formats: JPG, PNG
+              </p>
+              <p className="text-gray text-xs"> Max size: 5MB</p>
+            </div>
           </div>
         </div>
 
+        {/* control section */}
         <div className="flex justify-between">
           <Link
-            href=""
-            className="text-blueBlack flex gap-2 items-center font-normal"
+            href="/"
+            className="text-blueBlack flex gap-2 items-center font-normal "
           >
             <Image
               src="/icons/back.svg"
@@ -101,14 +130,16 @@ export function FormCard() {
               width={15}
               height={15}
             />
-            Back to List
+            <span className="hover:border-b-2 hover:border-b-purple">
+              Back to List
+            </span>
           </Link>
 
           <div className="space-x-5 ">
             <button className=" form-btn !border-gray/40 text-blueBlack border-1 rounded-3xl px-6 py-3">
               Cancel
             </button>
-            <button className="form-btn !border-0 bg-gradient-to-r from-purple to-seaBlue text-white rounded-3xl px-8 py-3">
+            <button className="form-btn !border-0 bg-gradient-to-r from-purple to-seaBlue text-white rounded-3xl px-8 py-3 hover:shadow-lg">
               Save Changes
             </button>
           </div>

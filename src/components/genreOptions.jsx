@@ -1,16 +1,24 @@
 export default function Genre({ className = "" }) {
+  const genres = [
+    { label: "Select Genre", value: "" },
+    { label: "All Genres", value: "All Genres" },
+    { label: "Comedy", value: "Comedy" },
+    { label: "Romantic Comedy", value: "Romantic Comedy" },
+    { label: "Western", value: "Western" },
+    { label: "Drama", value: "Drama" },
+    { label: "Horror", value: "Horror" },
+  ];
+
   return (
     <select
       name="movies"
-      className={`bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl font-inherit font-medium text-gray  focus:outline-none focus:ring-1  focus:ring-purple/50 transition duration-500 ${className} `}
+      className={`bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl font-inherit font-medium text-gray  focus:outline-none focus:ring-2  focus:ring-purple/50 transition duration-500 ${className} `}
     >
-      <option value="All Genres">All Genres</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Romantic Comedy">Romantic Comedy</option>
-      <option value="Western">Western</option>
-      <option value="Drama">Drama</option>
-      <option value="Action">Action</option>
-      <option value="Horror">Horror</option>
+      {genres.map((genre, id) => (
+        <option key={id} value={genre.value}>
+          {genre.label}
+        </option>
+      ))}
     </select>
   );
 }

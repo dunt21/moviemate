@@ -63,7 +63,7 @@ export default function Home() {
 
             <Link
               href="/Create"
-              className="btn-square bg-red hover:bg-red/90 hover:shadow-md "
+              className="btn-square bg-red hover:bg-red/90 hover:shadow-md hover:!text-white"
             >
               <button className="flex gap-2 hover:text-white">
                 <Image

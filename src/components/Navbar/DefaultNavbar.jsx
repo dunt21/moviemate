@@ -6,7 +6,7 @@ export default function DefaultNavbar() {
       <p className="logo">MovieMate</p>
       <div>
         <div className="nav-p">
-          <a>Home</a>
+          <a href="/">Home</a>
           <a>Contact</a>
         </div>
       </div>

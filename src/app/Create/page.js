@@ -1,4 +1,3 @@
-import Layout from "../layout";
 import { FormCard } from "@/components/FormCard";
 
 export default function Create() {
