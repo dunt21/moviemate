@@ -21,7 +21,7 @@ export default function Layout({ children, variant }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.variable}  antialiased bg-bgGray h-screen w-screen overflow-x-hidden`}
+        className={`${inter.variable}  antialiased bg-bgGray min-h-screen w-screen overflow-x-hidden relative`}
       >
         <Navbar />
         {children}

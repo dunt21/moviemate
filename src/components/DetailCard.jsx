@@ -2,10 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { use } from "react";
+import usePopup from "@/hooks/usePopup";
+import DeletePopup from "./DeletePopup";
 
 export default function DefaultCard() {
   const router = useRouter();
+  const { showPopup, open, close } = usePopup();
 
   const movieDetail = [
     {
@@ -29,7 +31,7 @@ export default function DefaultCard() {
             {mov.name}
           </p>
 
-          <div className="relative  bg-white rounded-xl shadow-glass p-7 flex items-center gap-7">
+          <div className="  bg-white rounded-xl shadow-glass p-7 flex items-center gap-7">
             <div className="w-auto hover:scale-105 rounded-lg overflow-hidden">
               <img
                 src={mov.img}
@@ -118,6 +120,15 @@ export default function DefaultCard() {
                 >
                   Back to List
                 </button>
+                <button
+                  className="border-0 bg-red  rounded-3xl text-white px-10 py-3 hover:scale-105 ml-10"
+                  onClick={open}
+                >
+                  Delete
+                </button>
+                {showPopup && (
+                  <DeletePopup onCancel={close} onConfirm={close} />
+                )}
               </div>
             </div>
           </div>

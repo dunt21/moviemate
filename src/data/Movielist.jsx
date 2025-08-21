@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import DeletePopup from "@/components/DeletePopup";
+import usePopup from "@/hooks/usePopup";
 
 const movies = [
   {
@@ -69,12 +73,14 @@ const movies = [
 ];
 
 export function MovieCard() {
+  const { showPopup, setShowPopup, cardId, setCardID } = usePopup();
+
   return (
-    <div className="mt-9 w-full grid grid-cols-4 gap-6 h-full">
+    <div className="mt-9 w-full grid grid-cols-4 gap-6 ">
       {movies.map((movie, index) => (
         <div
           key={index}
-          className=" bg-white border-0 overflow-x-hidden rounded-2xl font-medium shadow-md hover:scale-[1.03] hover:shadow-lg"
+          className=" bg-white border-0 overflow-x-hidden rounded-2xl font-medium shadow-md  hover:scale-[1.03] hover:shadow-lg "
         >
           <div className="relative h-64">
             <img
@@ -115,10 +121,32 @@ export function MovieCard() {
                 />
                 Edit
               </a>
-              <Link className="hover:!text-red" href="">
+              <Link
+                className="hover:!text-red"
+                onClick={(E) => {
+                  E.preventDefault();
+                  setShowPopup(true);
+                  setCardID(index);
+                }}
+                href=""
+              >
                 <Image src="/icons/bin.svg" width={14} height={14} alt="bin" />
                 Delete
               </Link>
+
+              {cardId === index && showPopup && (
+                <DeletePopup
+                  onCancel={() => {
+                    setShowPopup(false);
+                    setCardID(null);
+                  }}
+                  onConfirm={() => {
+                    setShowPopup(false);
+                    setCardID(null);
+                  }}
+                />
+              )}
+
               <Link href="/Detail">
                 <Image
                   src="/icons/detail.svg"

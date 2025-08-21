@@ -6,7 +6,7 @@ import { MovieCard } from "@/data/Movielist";
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-full">
       {/* Hero Section */}
       <section className="bg-[url('/images/cinematic.png')] bg-center bg-cover w-full h-[400px] relative">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -102,6 +102,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-    </>
+    </div>
   );
 }

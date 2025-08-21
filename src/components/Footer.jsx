@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
       </div>
       <nav className="space-x-7 ">
-        <a>Home</a>
+        <a href="/">Home</a>
         <a>Privacy</a>
         <a>Terms</a>
         <a>Contact</a>
