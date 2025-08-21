@@ -11,6 +11,7 @@
   --color-seaBlue: #00e6e6;
   --inset-shadow-md: 0px 2px 4px 0px rgb(0, 0, 0, 0.06) inset;
   --color-blueBlack: rgb(55 65 81);
+  --color-lightbrown: #a16207;
 }
 
 body {
@@ -176,4 +177,20 @@ textarea:focus {
 label {
   margin-bottom: 8px;
   color: var(--color-blueBlack);
+}
+
+.detail-card > p {
+  display: flex;
+  align-items: center;
+  color: var(--color-blueBlack);
+  gap: 4px;
+}
+
+.genre-badge {
+  color: var(--color-seaBlue);
+  background-color: rgb(0, 230, 230, 0.2);
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 8rem;
+  font-size: 12px;
 }

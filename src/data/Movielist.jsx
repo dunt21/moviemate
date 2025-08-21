@@ -102,9 +102,7 @@ export function MovieCard() {
                   year: "numeric",
                 }).format(new Date(movie.date))}
               </p>
-              <p className="text-seaBlue bg-seaBlue/20 font-medium px-3 text-xs  py-1 rounded-full ">
-                {movie.genre}
-              </p>
+              <p className="genre-badge  ">{movie.genre}</p>
             </div>
             <p className="text-gray text-sm mb-6">${movie.price.toFixed(2)}</p>
             <div className="flex justify-between format-cont mb-7 [&>*]:hover:shadow/20 ">
@@ -121,7 +119,7 @@ export function MovieCard() {
                 <Image src="/icons/bin.svg" width={14} height={14} alt="bin" />
                 Delete
               </Link>
-              <Link href="">
+              <Link href="/Detail">
                 <Image
                   src="/icons/detail.svg"
                   width={14}

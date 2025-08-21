@@ -9,7 +9,7 @@ export function FormCard() {
       <form className="space-y-7" noValidate>
         {/* movie title */}
         <div className="flex flex-col">
-          <label for="title">Movie Title</label>
+          <label htmlFor="title">Movie Title</label>
           <input
             type="text"
             placeholder="Days Apart..."
@@ -21,12 +21,12 @@ export function FormCard() {
         {/* input for date, price, genre and rating */}
         <div className="grid grid-cols-2 gap-6 input-div-p">
           <div>
-            <label for="date">Release Date</label>
+            <label htmlFor="date">Release Date</label>
             <input type="date" id="date" required></input>
           </div>
 
           <div className="">
-            <label for="genre">Genre</label>
+            <label htmlFor="genre">Genre</label>
             <Genre
               id="genre"
               className=" !text-black !rounded-[0.5rem] inset-shadow-md"
@@ -34,7 +34,7 @@ export function FormCard() {
             />
           </div>
           <div className="">
-            <label for="price">Price</label>
+            <label htmlFor="price">Price</label>
             <input
               type="number"
               placeholder="12.99..."
@@ -44,7 +44,7 @@ export function FormCard() {
           </div>
 
           <div className="">
-            <label for="rate">Rating</label>
+            <label htmlFor="rate">Rating</label>
             <Rating
               id="rate"
               className="!text-black !rounded-[0.5rem] inset-shadow-md"
@@ -55,7 +55,7 @@ export function FormCard() {
 
         {/* synopsis */}
         <div>
-          <label className="" for="summary">
+          <label className="" htmlFor="summary">
             Synopsis
           </label>
           <textarea
@@ -105,7 +105,7 @@ export function FormCard() {
               <input className="hidden" id="upload-img" type="file" required />
 
               <label
-                for="upload-img"
+                htmlFor="upload-img"
                 className="!mb-0 form-btn border-purple !text-purple border-1 rounded-3xl py-2 px-6 hover:bg-purple hover:!text-white cursor-pointer"
               >
                 Browse Files
