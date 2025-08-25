@@ -127,7 +127,7 @@ export default function DefaultCard() {
                   Delete
                 </button>
                 {showPopup && (
-                  <DeletePopup onCancel={close} onConfirm={close} />
+                  <DeletePopup onCancel={close} onConfirm={close} movie={mov} />
                 )}
               </div>
             </div>

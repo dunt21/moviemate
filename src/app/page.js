@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SearchInput } from "@/components/SearchInput";
 import Genre from "@/components/genreOptions";
-import { MovieCard } from "@/data/Movielist";
+import { MovieCard } from "@/components/MovieCard";
 
 export default function Home() {
   return (

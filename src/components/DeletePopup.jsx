@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-export default function DeletePopup({ onCancel, onConfirm }) {
+export default function DeletePopup({ movie, onCancel, onConfirm }) {
+  if (!movie) return null;
+
   return (
     <div className="bg-black/20 w-full h-full flex items-center justify-center absolute inset-0 backdrop-blur-xs z-100">
       <div
@@ -18,7 +20,7 @@ export default function DeletePopup({ onCancel, onConfirm }) {
         <p>
           Are you sure you want to delete{" "}
           <span className="font-semibold text-xl bg-clip-text text-transparent bg-gradient-to-r from-purple to-red">
-            Inception
+            {movie.name}
           </span>
           ?
         </p>
