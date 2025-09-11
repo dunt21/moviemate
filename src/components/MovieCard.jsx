@@ -4,16 +4,40 @@ import Image from "next/image";
 import Link from "next/link";
 import DeletePopup from "@/components/DeletePopup";
 import { Movies } from "@/data/MovieList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function MovieCard() {
   const [moviesData, setMoviesData] = useState(Movies);
   const [selectedMovie, setselectedMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // const handleDelete = (mov) => {
-  //   // setMoviesData((arr) => arr.pop(mov));
-  //   setselectedMovie(null);
-  // };
+  useEffect(() => {
+    fetch("https://localhost:7142/api/MovieMate")
+      .then((response) => {
+        console.log(response);
+
+        if (!response.ok) {
+          console.log("failed to fetch movies:", response.status);
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setMoviesData(data);
+
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p> Loading movies ....</p>;
+  if (error) return <p> Error: {error}</p>;
 
   return (
     <div className="mt-9 w-full grid grid-cols-4 gap-6 ">
@@ -24,7 +48,7 @@ export function MovieCard() {
         >
           <div className="relative h-64">
             <img
-              src={movie.img}
+              src={`https://localhost:7142${movie.imageUrl}`}
               className="h-full w-full object-cover"
               alt="movie poster for Inception with blue tones "
             />
@@ -35,7 +59,7 @@ export function MovieCard() {
           </div>
 
           <div className="px-5 pt-6  ">
-            <p className="font-bold text-xl mb-2">{movie.name}</p>
+            <p className="font-bold text-xl mb-2">{movie.title}</p>
             <div className="flex justify-between mb-3">
               <p className="flex items-center gap-2 text-sm leading-0 text-gray">
                 <Image
@@ -46,7 +70,7 @@ export function MovieCard() {
                 />
                 {new Intl.DateTimeFormat(navigator.language, {
                   year: "numeric",
-                }).format(new Date(movie.date))}
+                }).format(new Date(movie.releaseDate))}
               </p>
               <p className="genre-badge  ">{movie.genre}</p>
             </div>
