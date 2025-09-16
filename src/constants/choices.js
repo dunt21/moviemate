@@ -21,3 +21,13 @@ export const GENRES = [
 ];
 
 export const RATINGS = ["3+", "7+", "12+", "13+", "16+", "18+"];
+
+export const MOVIE_DEFAULTS = {
+  title: "",
+  genre: "",
+  data: "",
+  image: "",
+  summary: "",
+  price: 0,
+  rating: "",
+};

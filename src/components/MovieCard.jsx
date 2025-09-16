@@ -2,46 +2,49 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import DeletePopup from "@/components/DeletePopup";
 import { Movies } from "@/data/MovieList";
 import { useState, useEffect } from "react";
 
-export function MovieCard() {
-  const [moviesData, setMoviesData] = useState(Movies);
+export function MovieCard({ movies }) {
+  // const [moviesData, setMoviesData] = useState(Movies);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   fetch("https://localhost:7142/api/MovieMate")
+  //     .then((response) => {
+  //       console.log(response);
+
+  //       if (!response.ok) {
+  //         console.log("failed to fetch movies:", response.status);
+  //       }
+
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //       setMoviesData(data);
+
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setError(err);
+  //       console.log(err);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
+  // if (loading) return <p> Loading movies ....</p>;
+  // if (error) return <p> Error: {error}</p>;
+
   const [selectedMovie, setselectedMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch("https://localhost:7142/api/MovieMate")
-      .then((response) => {
-        console.log(response);
-
-        if (!response.ok) {
-          console.log("failed to fetch movies:", response.status);
-        }
-
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setMoviesData(data);
-
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        console.log(err);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <p> Loading movies ....</p>;
-  if (error) return <p> Error: {error}</p>;
+  const router = useRouter();
 
   return (
     <div className="mt-9 w-full grid grid-cols-4 gap-6 ">
-      {moviesData.map((movie, index) => (
+      {movies.map((movie, index) => (
         <div
           key={index}
           className=" bg-white border-0 overflow-x-hidden rounded-2xl font-medium shadow-md  hover:scale-[1.03] hover:shadow-lg "
@@ -75,8 +78,11 @@ export function MovieCard() {
               <p className="genre-badge  ">{movie.genre}</p>
             </div>
             <p className="text-gray text-sm mb-6">${movie.price.toFixed(2)}</p>
-            <div className="flex justify-between format-cont mb-7 [&>*]:hover:shadow/20 ">
-              <a className="hover:!text-gray" href="/Edit">
+            <div
+              className="flex justify-between format-cont mb-7 [&>*]:hover:shadow/20 "
+              onClick={() => router.push(`/Edit?id=${movie.id}`)}
+            >
+              <a className="hover:!text-gray">
                 <Image
                   src="/icons/edit.svg"
                   width={14}

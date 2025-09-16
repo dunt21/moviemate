@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SearchInput } from "@/components/SearchInput";
@@ -5,6 +8,26 @@ import Genre from "@/components/genreOptions";
 import { MovieCard } from "@/components/MovieCard";
 
 export default function Home() {
+  const [title, setTitle] = useState("");
+  const [genre, setGenre] = useState("");
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+  async function fetchMovies() {
+    const res = await fetch(
+      `https://localhost:7142/api/MovieMate?title=${title}&genre=${genre}`
+    );
+    const data = await res.json();
+    setMovies(data);
+  }
+
+  const handleFilter = () => {
+    fetchMovies();
+  };
+
   return (
     <div className="min-h-full">
       {/* Hero Section */}
@@ -39,7 +62,7 @@ export default function Home() {
 
           <div className="mt-8 flex gap-5 ">
             <div className="relative  ">
-              <Genre />
+              <Genre genre={genre} setGenre={setGenre} />
               <div className="absolute top-1/2 transform -translate-y-[50%] left-[8rem] w-fit">
                 <Image
                   src="/icons/dropdown.svg"
@@ -50,8 +73,11 @@ export default function Home() {
                 />
               </div>
             </div>
-            <SearchInput />
-            <button className="btn-square bg-gradient-to-r from-purple to-seaBlue hover:shadow-md">
+            <SearchInput title={title} setTitle={setTitle} />
+            <button
+              onClick={handleFilter}
+              className="btn-square bg-gradient-to-r from-purple to-seaBlue hover:shadow-md"
+            >
               <Image
                 src="/icons/filter.svg"
                 alt="filter"
@@ -79,7 +105,7 @@ export default function Home() {
         </div>
 
         {/* Movie List */}
-        <MovieCard />
+        <MovieCard movies={movies} />
 
         {/* navigate pages */}
         <div className="navigate-btn flex justify-center mt-12 gap-2">

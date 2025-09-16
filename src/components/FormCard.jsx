@@ -3,17 +3,19 @@ import Rating from "./Rating";
 import Image from "next/image";
 import Link from "next/link";
 
-export function FormCard() {
+export function FormCard({ update, submit, movie, setMovie }) {
   return (
     <div className="bg-gray-100 w-[50%] h-full border-0 rounded-xl shadow-glass p-7 font-medium">
-      <form className="space-y-7" noValidate>
+      <form className="space-y-7" onSubmit={submit} noValidate>
         {/* movie title */}
         <div className="flex flex-col">
           <label htmlFor="title">Movie Title</label>
           <input
             type="text"
+            value={movie.title}
             placeholder="Days Apart..."
             id="title"
+            onChange={update}
             required
           ></input>
         </div>
@@ -22,13 +24,20 @@ export function FormCard() {
         <div className="grid grid-cols-2 gap-6 input-div-p">
           <div>
             <label htmlFor="date">Release Date</label>
-            <input type="date" id="date" required></input>
+            <input
+              type="date"
+              id="date"
+              value={movie.date}
+              onChange={update}
+              required
+            ></input>
           </div>
 
           <div className="">
             <label htmlFor="genre">Genre</label>
             <Genre
               id="genre"
+              genre={movie.genre}
               className=" !text-black !rounded-[0.5rem] inset-shadow-md"
               required
             />
@@ -39,6 +48,8 @@ export function FormCard() {
               type="number"
               placeholder="12.99..."
               id="price"
+              value={movie.price}
+              onChange={update}
               required
             ></input>
           </div>
@@ -49,6 +60,7 @@ export function FormCard() {
               id="rate"
               className="!text-black !rounded-[0.5rem] inset-shadow-md"
               required
+              onChange={update}
             />
           </div>
         </div>
@@ -63,6 +75,8 @@ export function FormCard() {
             minLength="150"
             maxLength="600"
             id="summary"
+            value={movie.summary}
+            onChange={update}
           ></textarea>
         </div>
 
@@ -102,7 +116,16 @@ export function FormCard() {
                 <br />
                 <span className="text-gray ">or</span>
               </p>
-              <input className="hidden" id="upload-img" type="file" required />
+              <input
+                className="hidden"
+                id="image"
+                type="file"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setMovie({ ...movie, [e.target.id]: file });
+                }}
+                required
+              />
 
               <label
                 htmlFor="upload-img"
