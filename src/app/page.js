@@ -62,7 +62,7 @@ export default function Home() {
 
           <div className="mt-8 flex gap-5 ">
             <div className="relative  ">
-              <Genre genre={genre} setGenre={setGenre} />
+              <Genre genre={genre} onChange={(e) => setGenre(e.target.value)} />
               <div className="absolute top-1/2 transform -translate-y-[50%] left-[8rem] w-fit">
                 <Image
                   src="/icons/dropdown.svg"

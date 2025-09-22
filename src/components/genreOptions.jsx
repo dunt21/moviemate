@@ -23,7 +23,6 @@ export default function Genre({ className = "", genre, onChange }) {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setGenres(data);
       })
       .catch((err) => {
@@ -35,6 +34,7 @@ export default function Genre({ className = "", genre, onChange }) {
   return (
     <select
       value={genre}
+      id="genre"
       onChange={onChange}
       name="movies"
       className={`bg-white py-3 px-4 appearance-none border border-gray-200 rounded-xl font-inherit font-medium text-gray  focus:outline-none focus:ring-2  focus:ring-purple/50 transition duration-500 ${className} `}

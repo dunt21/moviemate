@@ -1,12 +1,28 @@
+"use client";
+
 import Genre from "./genreOptions";
 import Rating from "./Rating";
 import Image from "next/image";
 import Link from "next/link";
+import { updateImage } from "@/hooks/functionalities";
+import { useState, useEffect } from "react";
 
 export function FormCard({ update, submit, movie, setMovie }) {
+  const [previewImg, setPreview] = useState(null);
+
+  useEffect(
+    () => setPreview(`https://localhost:7142/${movie.imageUrl}`),
+    [movie?.imageUrl]
+  );
+  console.log(previewImg);
+
   return (
     <div className="bg-gray-100 w-[50%] h-full border-0 rounded-xl shadow-glass p-7 font-medium">
-      <form className="space-y-7" onSubmit={submit} noValidate>
+      <form
+        className="space-y-7"
+        onSubmit={() => submit(movie.id, "PUT", movie)}
+        noValidate
+      >
         {/* movie title */}
         <div className="flex flex-col">
           <label htmlFor="title">Movie Title</label>
@@ -15,7 +31,7 @@ export function FormCard({ update, submit, movie, setMovie }) {
             value={movie.title}
             placeholder="Days Apart..."
             id="title"
-            onChange={update}
+            onChange={(e) => update(e, movie, setMovie)}
             required
           ></input>
         </div>
@@ -23,12 +39,12 @@ export function FormCard({ update, submit, movie, setMovie }) {
         {/* input for date, price, genre and rating */}
         <div className="grid grid-cols-2 gap-6 input-div-p">
           <div>
-            <label htmlFor="date">Release Date</label>
+            <label htmlFor="releaseDate">Release Date</label>
             <input
               type="date"
-              id="date"
-              value={movie.date}
-              onChange={update}
+              id="releaseDate"
+              value={movie.releaseDate.split("T")[0]}
+              onChange={(e) => update(e, movie, setMovie)}
               required
             ></input>
           </div>
@@ -38,6 +54,7 @@ export function FormCard({ update, submit, movie, setMovie }) {
             <Genre
               id="genre"
               genre={movie.genre}
+              onChange={(e) => update(e, movie, setMovie)}
               className=" !text-black !rounded-[0.5rem] inset-shadow-md"
               required
             />
@@ -49,34 +66,35 @@ export function FormCard({ update, submit, movie, setMovie }) {
               placeholder="12.99..."
               id="price"
               value={movie.price}
-              onChange={update}
+              onChange={(e) => update(e, movie, setMovie)}
               required
             ></input>
           </div>
 
           <div className="">
-            <label htmlFor="rate">Rating</label>
+            <label htmlFor="rating">Rating</label>
             <Rating
-              id="rate"
+              value={movie.rating ?? ""}
+              id="rating"
               className="!text-black !rounded-[0.5rem] inset-shadow-md"
               required
-              onChange={update}
+              onChange={(e) => update(e, movie, setMovie)}
             />
           </div>
         </div>
 
         {/* synopsis */}
         <div>
-          <label className="" htmlFor="summary">
+          <label className="" htmlFor="synopsis">
             Synopsis
           </label>
           <textarea
             placeholder="Description goes here..."
             minLength="150"
             maxLength="600"
-            id="summary"
-            value={movie.summary}
-            onChange={update}
+            id="synopsis"
+            value={movie.synopsis}
+            onChange={(e) => update(e, movie, setMovie)}
           ></textarea>
         </div>
 
@@ -85,22 +103,39 @@ export function FormCard({ update, submit, movie, setMovie }) {
           <p className="text-blueBlack mb-2"> Movie Poster</p>
 
           <div className="h-64 flex gap-8 ">
-            <div className="border-1 rounded-lg w-[45%] flex flex-col items-center pt-5 border-gray/50 relative">
-              <Image
-                src="/icons/image.svg"
-                alt="image icon"
-                width={150}
-                height={150}
-              />
-              <p className="text-blueBlack">Image will appear here</p>
-              <button className="bg-red py-1 px-2 rounded-2xl absolute right-2 top-2 hidden">
-                <Image
-                  src="/icons/close.svg"
-                  width={15}
-                  height={15}
-                  alt="close icon"
-                />
-              </button>
+            <div className="border-1 rounded-lg w-[45%] flex flex-col items-center border-gray/50 relative overflow-x-hidden">
+              {previewImg ? (
+                <>
+                  <img
+                    src={previewImg}
+                    className="object-cover h-full w-full"
+                  />
+                  <button
+                    className="bg-red py-1 px-2 rounded-2xl absolute right-2 top-2 "
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPreview(null);
+                    }}
+                  >
+                    <Image
+                      src="/icons/close.svg"
+                      width={15}
+                      height={15}
+                      alt="close icon"
+                    />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Image
+                    src="/icons/image.svg"
+                    alt="image icon"
+                    width={150}
+                    height={150}
+                  />
+                  <p className="text-blueBlack">Image will appear here</p>
+                </>
+              )}
             </div>
 
             <div className="border-2 border-gray/50 border-dashed flex-1 rounded-lg flex flex-col items-center justify-center hover:border-purple/50">
@@ -118,17 +153,17 @@ export function FormCard({ update, submit, movie, setMovie }) {
               </p>
               <input
                 className="hidden"
-                id="image"
+                id="imageUrl"
                 type="file"
                 onChange={(e) => {
-                  const file = e.target.files[0];
-                  setMovie({ ...movie, [e.target.id]: file });
+                  setPreview(updateImage(e));
+                  console.log(previewImg);
                 }}
                 required
               />
 
               <label
-                htmlFor="upload-img"
+                htmlFor="imageUrl"
                 className="!mb-0 form-btn border-purple !text-purple border-1 rounded-3xl py-2 px-6 hover:bg-purple hover:!text-white cursor-pointer"
               >
                 Browse Files
@@ -162,7 +197,10 @@ export function FormCard({ update, submit, movie, setMovie }) {
             <button className=" form-btn !border-gray/40 text-blueBlack border-1 rounded-3xl px-6 py-3">
               Cancel
             </button>
-            <button className="form-btn !border-0 bg-gradient-to-r from-purple to-seaBlue text-white rounded-3xl px-8 py-3 hover:shadow-lg">
+            <button
+              type="submit"
+              className="form-btn !border-0 bg-gradient-to-r from-purple to-seaBlue text-white rounded-3xl px-8 py-3 hover:shadow-lg"
+            >
               Save Changes
             </button>
           </div>

@@ -9,17 +9,21 @@ import { useSearchParams } from "next/navigation";
 export default function Edit() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  console.log(id);
 
   const [movie, setMovie] = useState(MOVIE_DEFAULTS);
 
   useEffect(() => {
     if (id) {
       (async () => {
-        const res = await fetch(`https://localhost:7142/api/MovieMate/${id}`);
-        const data = await res.json();
-        console.log(data);
-        setMovie(data);
+        try {
+          const res = await fetch(`https://localhost:7142/api/MovieMate/${id}`);
+          const data = await res.json();
+          console.log(data);
+
+          setMovie(data);
+        } catch (err) {
+          console.error(err);
+        }
       })();
     }
   }, [id]);
@@ -34,7 +38,11 @@ export default function Edit() {
       </div>
 
       <FormCard
-        update={(e) => update(e, movie, setMovie)}
+        update={(e) => {
+          update(e, movie, setMovie);
+
+          console.log(e.target.id, e.target.value);
+        }}
         submit={() => submit(id, "PUT", movie)}
         movie={movie}
         setMovie={setMovie}
